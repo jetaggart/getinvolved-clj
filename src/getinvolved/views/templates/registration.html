@@ -1,0 +1,32 @@
+{% extends "getinvolved/views/templates/base.html" %}
+{% block menu %}
+{% endblock %}
+{% block content %}
+<form action="{{servlet-context}}/register" method="POST">
+  <div class="form-group col-lg-3">
+    <label for="id">user id</label>
+    {% if id-error %}
+      <div class="alert alert-danger">{{id-error}}</div>
+    {% endif %}
+    <p>
+      <input class="form-control" id="id" name="id" tabindex="1" type="text" value={{id}}></input>
+    </p>
+    <label for="pass">password</label>
+    {% if password-error %}
+      <div class="alert alert-danger">{{password-error}}</div>
+    {% endif %}
+    <p>
+      <input class="form-control" id="password" name="password" tabindex="2" type="password"></input>
+    </p>
+    <label for="pass1">retype password</label>
+    {% if password-confirmation-error %}
+      <div class="alert alert-danger">{{password-confirmation-error}}</div>
+    {% endif %}
+    <p>
+      <input class="form-control" id="password_confirmation" name="password_confirmation" tabindex="3" type="password"></input>
+    </p>
+    <input class="btn" tabindex="4" type="submit" value="create account">
+  </div>
+</form>
+{% endblock %}
+
