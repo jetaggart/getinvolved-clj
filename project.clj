@@ -12,6 +12,8 @@
                  [org.clojure/clojurescript "0.0-2138"]
                  [org.clojure/clojure "1.6.0"]
                  [com.taoensso/tower "2.0.2"]
+                 [clj-webdriver "0.6.1"]
+                 [org.clojure/core.cache "0.6.3"]
                  [log4j "1.2.17" :exclusions [javax.mail/mail
                                               javax.jms/jms
                                               com.sun.jdmk/jmxtools
@@ -27,10 +29,9 @@
                                {:pretty-print  false,
                                 :output-to     "resources/public/js/site.js",
                                 :optimizations :advanced}}]}
-  :ring
-  {:handler getinvolved.handler/app,
-   :init    getinvolved.handler/init,
-   :destroy getinvolved.handler/destroy}
+  :ring {:handler getinvolved.handler/app,
+         :init    getinvolved.handler/init,
+         :destroy getinvolved.handler/destroy}
   :ragtime {:migrations ragtime.sql.files/migrations,
             :database   "jdbc:postgresql://localhost/getinvolved?user=getinvolved&password=getinvolved"}
   :profiles {:uberjar    {:aot :all},

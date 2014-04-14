@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{servlet-context}}/">getinvolved</a>
+          <a id="brand" class="navbar-brand" href="{{servlet-context}}/">getinvolved</a>
         </div>
         {% block menu %}
           {% include "getinvolved/views/templates/menu.html" %}
@@ -31,8 +31,9 @@
     {% script "/js/bootstrap.min.js" %}
     <script type="text/javascript">
       var context = "{{servlet-context}}";
+      var page = "{{selected-page}}";
       $(function() {
-        $("#{{selected-page}}").addClass("active");
+        $("#" + page).addClass("active");
       });
     </script>
     </body>
