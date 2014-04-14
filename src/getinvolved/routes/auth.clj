@@ -7,34 +7,35 @@
             [noir.util.crypt :as crypt]
             [getinvolved.models.db :as db]))
 
-(defn valid? [id password password_confirmation]
-  (vali/rule (vali/has-value? id)
-             [:id "user ID is required"])
+(defn valid? [username password password_confirmation]
+  (vali/rule (vali/has-value? username)
+             [:username "username is required"])
   (vali/rule (vali/min-length? password 5)
              [:password "password must be at least 5 characters"])
   (vali/rule (= password password_confirmation)
              [:password_confirmation "entered passwords do not match"])
-  (not (vali/errors? :id :password :password_confirmation)))
+  (not (vali/errors? :username :password :password_confirmation)))
 
-(defn register [& [id]]
+(defn register [& [username]]
   (layout/render
     "registration.html"
-    {:id id
-     :id-error (vali/on-error :id first)
-     :password-error (vali/on-error :password first)
+    {:username                    username
+     :username-error              (vali/on-error :username first)
+     :password-error              (vali/on-error :password first)
      :password-confirmation-error (vali/on-error :password_confirmation first)}))
 
-(defn handle-registration [id password password_confirmation]
-  (if (valid? id password password_confirmation)
+(defn handle-registration [username password password_confirmation]
+  (if (valid? username password password_confirmation)
     (try
       (do
-        (db/create-user {:id id :password (crypt/encrypt password)})
-        (session/put! :user-id id)
+        (db/create-user {:username username
+                         :password (crypt/encrypt password)})
+        (session/put! :username username)
         (resp/redirect "/"))
       (catch Exception ex
-        (vali/rule false [:id (.getMessage ex)])
+        (vali/rule false [:username (.getMessage ex)])
         (register)))
-    (register id)))
+    (register username)))
 
 (defn profile []
   (layout/render
@@ -57,18 +58,18 @@
   (resp/redirect "/"))
 
 (defroutes auth-routes
-  (GET "/register" []
-       (register))
+           (GET "/register" []
+                (register))
 
-  (POST "/register" [id password password_confirmation]
-        (handle-registration id password password_confirmation))
+           (POST "/register" [username password password_confirmation]
+                 (handle-registration username password password_confirmation))
 
-  (GET "/profile" [] (profile))
-  
-  (POST "/update-profile" {params :params} (update-profile params))
-  
-  (POST "/login" [id password]
-        (handle-login id password))
+           (GET "/profile" [] (profile))
 
-  (GET "/logout" []
-        (logout)))
+           (POST "/update-profile" {params :params} (update-profile params))
+
+           (POST "/login" [id password]
+                 (handle-login id password))
+
+           (GET "/logout" []
+                (logout)))

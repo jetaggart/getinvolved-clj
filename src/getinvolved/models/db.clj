@@ -7,6 +7,9 @@
 
 (defentity users)
 
+(defn delete-all []
+  (exec (delete* users)))
+
 (defn create-user [user]
   (insert users
           (values user)))

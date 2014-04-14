@@ -21,8 +21,8 @@
           "active"
           :servlet-context
           (:context request)
-          :user-id
-          (session/get :user-id))
+          :username
+          (session/get :username))
         (parser/render-file (str template-path template))
         response)
       "text/html; charset=utf-8")))

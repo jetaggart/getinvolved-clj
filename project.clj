@@ -9,7 +9,7 @@
                  [com.taoensso/timbre "3.1.6"]
                  [prismatic/dommy "0.1.2"]
                  [korma "0.3.0-RC6"]
-                 [org.clojure/clojurescript "0.0-2138"]
+                 [org.clojure/clojurescript "0.0-2202"]
                  [org.clojure/clojure "1.6.0"]
                  [com.taoensso/tower "2.0.2"]
                  [clj-webdriver "0.6.1"]

@@ -1,10 +1,10 @@
 <div class="navbar-collapse collapse">
-  {% if user-id %}
+  {% if username %}
     <div class="btn-group pull-right">
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a id="logged-in-user" href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="icon-user"></i>{{user-id}} <b class="caret"></b>
+            <i class="icon-user"></i>{{username}} <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><a href="{{servlet-context}}/profile">Profile</a></li>

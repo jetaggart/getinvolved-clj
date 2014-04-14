@@ -4,26 +4,26 @@
 {% block content %}
 <form action="{{servlet-context}}/register" method="POST">
   <div class="form-group col-lg-3">
-    <label for="id">user id</label>
-    {% if id-error %}
-      <div class="alert alert-danger">{{id-error}}</div>
+    <label for="username">username</label>
+    {% if username-error %}
+      <div class="alert alert-danger">{{username-error}}</div>
     {% endif %}
     <p>
-      <input class="form-control" id="id" name="id" tabindex="1" type="text" value={{id}}/>
+      <input class="form-control" id="username" name="username" tabindex="1" type="text" value={{username}}>
     </p>
     <label for="password">password</label>
     {% if password-error %}
       <div class="alert alert-danger">{{password-error}}</div>
     {% endif %}
     <p>
-      <input class="form-control" id="password" name="password" tabindex="2" type="password"/>
+      <input class="form-control" id="password" name="password" tabindex="2" type="password">
     </p>
     <label for="password_confirmation">retype password</label>
     {% if password-confirmation-error %}
       <div class="alert alert-danger">{{password-confirmation-error}}</div>
     {% endif %}
     <p>
-      <input class="form-control" id="password_confirmation" name="password_confirmation" tabindex="3" type="password"/>
+      <input class="form-control" id="password_confirmation" name="password_confirmation" tabindex="3" type="password">
     </p>
     <input class="btn" tabindex="4" type="submit" value="create account">
   </div>
